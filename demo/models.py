@@ -14,4 +14,12 @@ class Author(models.Model):
     name=models.CharField(max_length=30)
 class AuthorDetail(models.Model):
     sex=models.BooleanField(max_length=1,choices=((0,'男'),(1,'女')))
-
+    email=models.EmailField()
+    address=models.CharField(max_length=50)
+    birthday=models.DateField()
+    author=models.OneToOneField(Author)
+class Book(models.Model):
+    title=models.CharField(max_length=100)
+    authors=models.ManyToManyField(Author)
+    publisher=models.ForeignKey(Publisher)
+    publication_date=models.DateField()
