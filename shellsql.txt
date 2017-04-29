@@ -13,4 +13,7 @@ django shell:
 >>book=Book.objects.get(id=1)
 >>author=Author.objects.get(id=1)
 >>book.authors.add(author)
-
+>>author.name='小王'
+>>author.save()
+>>Publisher.objects.filter(id=1).update(city='上海',website='http://www.google.com')
+#注意:update是QuerySet的方法
