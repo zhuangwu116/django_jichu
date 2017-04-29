@@ -1,0 +1,16 @@
+django shell:
+>>from demo.models import *
+>>Author.objects.create(name='小明')
+>> AuthorDetail.objects.create(sex=False,email='xxxxxxxx@qq.com',address='北京',birthday='1988-01-02',author_id=1)
+>> pub=Publisher()
+>>pub.name='电子工业出版社'
+>>pub.address='成都华阳'
+>>pub.state_province='四川'
+>>pub.city='成都'
+>>pub.country='中国'
+>>pub.website='http://www.baidu.com'
+>>pub.save()
+>>book=Book.objects.get(id=1)
+>>author=Author.objects.get(id=1)
+>>book.authors.add(author)
+
