@@ -7,7 +7,7 @@
 <body>
 <form action="{% url 'add_publisher' %}" method="post">
     {% csrf_token %}
-    {{ publisher_form.as_table }}
+    {{ publisher_form.as_ul }}
     <input type="submit" value="提交"><br>
 </form>
 </body>
