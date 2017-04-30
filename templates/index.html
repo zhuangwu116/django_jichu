@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,5 +11,14 @@
     <input type="text" value="" name="key">
     <input type="submit" value="提交">
 </form>
+ {{ value1|default:"no" }}
+{% verbatim %}
+{{ ver }}
+{% endverbatim %}
+</br>
+{% autoescape off %}
+    {{ value2|escape }}
+{% endautoescape %}
+{{ value2|safe }}
 </body>
 </html>

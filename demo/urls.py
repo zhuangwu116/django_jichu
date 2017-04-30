@@ -16,5 +16,6 @@ Including another URLconf
 from django.conf.urls import url
 import views
 urlpatterns = [
-    url(r'^$',views.hello,name='hello'),
+    url(r'^hello/$', views.hello, name='hello'),
+    url(r'^add_publisher/$', views.add_publisher, name='add_publisher'),
 ]
