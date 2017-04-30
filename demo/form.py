@@ -20,14 +20,23 @@ class PublisherForm(forms.ModelForm):
     # country = forms.CharField(label='国家',error_messages={'required':'国家必填'})
     # website = forms.URLField(label='网址',error_messages={'required':'网址必填'})
     # name=forms.CharField(label='名称',validators=[validate_name])
-    def clean_name(self):
-        name = self.cleaned_data['name']
+    # def clean_name(self):
+    #     name = self.cleaned_data['name']
+    #     try:
+    #         Publisher.objects.get(name=name)
+    #         raise ValidationError('%s的信息已存在'%name)
+    #     except Publisher.DoesNotExist:
+    #         print ("zhuangwu:"+"doesnotexist")
+    #     return name
+    def clean(self):
+        cleaned_data=super(PublisherForm,self).clean()
+        name = cleaned_data['name']
         try:
             Publisher.objects.get(name=name)
-            raise ValidationError('%s的信息已存在'%name)
+            self.add_error('name','表单已存在')
         except Publisher.DoesNotExist:
             print ("zhuangwu:"+"doesnotexist")
-        return name
+        return cleaned_data
     class Meta:
         model=Publisher
         exclude=('id',)
