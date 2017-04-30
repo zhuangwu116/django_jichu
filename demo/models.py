@@ -31,11 +31,14 @@ class AuthorDetail(models.Model):
     class Meta:
         verbose_name='作者详情'
         verbose_name_plural=verbose_name
+    def __str__(self):
+        return self.author.name
 class Book(models.Model):
     title=models.CharField(max_length=100,verbose_name='书名')
     authors=models.ManyToManyField(Author,verbose_name='作者')
     publisher=models.ForeignKey(Publisher,verbose_name='出版社')
     publication_date=models.DateField(verbose_name='出版日期')
+    price=models.DecimalField(max_digits=5,decimal_places=2,default=10,verbose_name='价格')
     class Meta:
         verbose_name='书籍'
         verbose_name_plural=verbose_name

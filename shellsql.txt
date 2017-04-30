@@ -17,3 +17,31 @@ django shell:
 >>author.save()
 >>Publisher.objects.filter(id=1).update(city='上海',website='http://www.google.com')
 #注意:update是QuerySet的方法
+>>Book.objects.filter(id=1).delete()
+>>Publisher.object.filter(city='上海').detele()
+>> Book.objects.filter(id=1).values('title','publisher')
+>>Publisher.objects.all().order_by('-id')
+>>Publisher.objects.all().order_by('id').reverse()
+>>AuthorDetail.objects.values('sex','email','address','birthday','author__name')
+>>Book.objects.filter(title='python实战').values('publisher__name')
+>> Book.objects.filter(title='python实战').values('publisher__website')
+>>Book.objects.filter(authors__name='小明')
+>>publisher=Publisher.objects.get(name='人民日报出版社')
+>>publisher.book_set.all()
+>>Publisher.objects.filter(name='人民日报出版社').count()
+>>from django.db.models import *
+>>Publisher.objects.filter(name='人民日报出版社').aggregate(Count('name'))
+>>Publisher.objects.filter(name='人民日报出版社').aggregate(count=Count('name'))
+>>Book.objects.filter(authors__name='小明').aggregate(Sum('price'))
+>> Book.objects.values('authors__name').annotate(Sum('price'))
+>>Book.objects.values('publisher__name').annotate(Min('price'))
+>>Book.objects.filter(publisher__name='人民日报出版社').extra(where=['price>0'])
+>>Book.objects.filter(publisher__name='人民日报出版社',price__gt=10)
+>>Book.objects.extra(select={'count':'select count(*) from demo_book'})
+>>Book.objects.raw('select * from demo_book')
+>>bbb=Book.objects.raw('select * from demo_author')
+>>for b in bbb:
+....  print b.name
+
+
+
