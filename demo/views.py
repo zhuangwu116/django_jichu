@@ -33,14 +33,19 @@ def add_publisher(request):
         #                          country=country,
         #                          website=website)
         #使用Form的情况
+        # publisher_form = PublisherForm(request.POST)
+        # if publisher_form.is_valid():
+        #     Publisher.objects.create(name=publisher_form.cleaned_data['name'],
+        #                              address=publisher_form.cleaned_data['address'],
+        #                              city=publisher_form.cleaned_data['city'],
+        #                              state_province=publisher_form.cleaned_data['state_province'],
+        #                              country=publisher_form.cleaned_data['country'],
+        #                              website=publisher_form.cleaned_data['website'])
+        # return HttpResponse('添加成功')
+        #使用modelForm
         publisher_form = PublisherForm(request.POST)
         if publisher_form.is_valid():
-            Publisher.objects.create(name=publisher_form.cleaned_data['name'],
-                                     address=publisher_form.cleaned_data['address'],
-                                     city=publisher_form.cleaned_data['city'],
-                                     state_province=publisher_form.cleaned_data['state_province'],
-                                     country=publisher_form.cleaned_data['country'],
-                                     website=publisher_form.cleaned_data['website'])
+           publisher_form.save()
         return HttpResponse('添加成功')
     else:
         publisher_form=PublisherForm()
