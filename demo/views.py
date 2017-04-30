@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render,HttpResponse
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from demo.models import *
 from demo.form import *
 # Create your views here.
@@ -45,7 +46,7 @@ def add_publisher(request):
         #使用modelForm
         publisher_form = PublisherForm(request.POST)
         if publisher_form.is_valid():
-           publisher_form.save()
+            publisher_form.save()
         return HttpResponse('添加成功')
     else:
         publisher_form=PublisherForm()
