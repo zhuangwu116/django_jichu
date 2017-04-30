@@ -47,7 +47,8 @@ def add_publisher(request):
         publisher_form = PublisherForm(request.POST)
         if publisher_form.is_valid():
             publisher_form.save()
-        return HttpResponse('添加成功')
+            return HttpResponse('添加成功')
+        return HttpResponse('添加失败')
     else:
         publisher_form=PublisherForm()
     return render(request,'add_publisher.html',locals())
